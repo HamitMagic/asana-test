@@ -1,0 +1,18 @@
+<main class="main-wrapper">
+	<mat-sidenav-container class="example-sidenav-container">
+			<mat-sidenav position="end" mode="over" fixedInViewport fixedTopGap="56">
+				<mat-nav-list>
+					@for (nav of fillerNav; track nav) {
+						<div>
+						<!-- <a mat-list-item [routerLink]="nav"> -->
+							{{nav}}
+						<!-- </a> -->
+						</div>
+					}
+				</mat-nav-list>
+			</mat-sidenav>
+		</mat-sidenav-container>
+	<div class="content-wrapper">
+		<router-outlet></router-outlet>
+	</div>
+</main>

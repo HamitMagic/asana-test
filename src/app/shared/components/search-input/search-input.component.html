@@ -1,0 +1,7 @@
+<div class="search-input-wrapper">
+	<mat-icon id="icon__left" fontIcon="search"></mat-icon>
+  <input class="search-input" [placeholder]="placeholder" type="text" [(ngModel)]="searchText">
+  @if (searchText) {
+    <mat-icon id="icon__right" (click)="clear()">close</mat-icon>
+  }
+</div>

@@ -1,0 +1,23 @@
+.search-input-wrapper {
+	align-self: center;
+	justify-self: center;
+	width: 30dvw;
+	position: sticky;
+
+}
+.search-input {
+	width: 30dvw;
+	padding: 0.5rem 2rem;
+	box-sizing: border-box;
+	border-radius: 5px;
+}
+#icon__left {
+	position: absolute;
+	top: 0.25rem;
+}
+#icon__right {
+	position: absolute;
+	top: 0.25rem;
+	right: 0;
+	cursor: pointer;
+}
