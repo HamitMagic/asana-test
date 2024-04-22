@@ -8,21 +8,21 @@ export const routes: Routes = [
       import('./layouts/main/main.component').then((m) => m.MainComponent),
     children: [
       {
-        path: ROUTE_CONSTANTS.TASK_LIST,
+        path: ROUTE_CONSTANTS.TASK_LIST.route,
         loadComponent: () =>
           import('./layouts/taskList/task-list.component').then(
             (m) => m.TaskListComponent
           ),
       },
       {
-        path: ROUTE_CONSTANTS.DASHBOARD,
+        path: ROUTE_CONSTANTS.DASHBOARD.route,
         loadComponent: () =>
           import('./layouts/dashboard/dashboard.component').then(
             (m) => m.DashboardComponent
           ),
       },
       {
-        path: ROUTE_CONSTANTS.CALENDAR,
+        path: ROUTE_CONSTANTS.CALENDAR.route,
         loadComponent: () =>
           import('./layouts/calendar/calendar.component').then(
             (m) => m.CalendarComponent

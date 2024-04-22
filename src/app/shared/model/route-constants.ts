@@ -1,7 +1,9 @@
+import { RouteConsts } from './router.model';
+
 export const ROUTE_CONSTANTS = {
-	HOME: '',
-  TASK_LIST: 'task-list',
-	DASHBOARD: 'dashboard',
-	CALENDAR: 'calendar',
-	DEFAULT: '**',
+  HOME: '',
+  DEFAULT: '**',
+  TASK_LIST: { route: 'task-list', name: 'Список' } as RouteConsts,
+  DASHBOARD: { route: 'dashboard', name: 'Доска' } as RouteConsts,
+  CALENDAR: { route: 'calendar', name: 'Календарь' } as RouteConsts,
 };

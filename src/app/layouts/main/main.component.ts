@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild, output } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ROUTE_CONSTANTS } from '../../shared/model/route-constants';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { RouteConsts } from '../../shared/model/router.model';
 
 @Component({
   selector: 'app-main',
@@ -23,16 +25,25 @@ import { MatSidenavModule } from '@angular/material/sidenav';
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
 })
-export class MainComponent implements OnInit {
+export class MainComponent {
   public routeConstants = ROUTE_CONSTANTS;
-  public fillerNav = Object.entries(this.routeConstants);
-  @ViewChild('snav') elementRef!: ElementRef;
+  public isSideNavOpen = true;
+  public mobileQuery: MediaQueryList;
 
-  constructor(private router: Router) {
-    console.log(this.elementRef)
-  }
+  public fillerNav = Object.values(this.routeConstants)
+    .filter((value) => typeof value !== 'string') as RouteConsts[];
 
-  ngOnInit(): void {
-    console.log(this.elementRef)
+  private _mobileQueryListener: () => void;
+
+  constructor(
+    private router: Router,
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher
+  ) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+    if (this.mobileQuery.matches) this.isSideNavOpen = false;
+    console.log(Object.values(this.routeConstants))
   }
 }
