@@ -3,38 +3,35 @@ import { DashboardItemComponent } from '../../shared/components/dashboard-item/d
 import { DeskService } from '../../services/desk.service';
 import { Observable, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [DashboardItemComponent, CommonModule],
+  imports: [DashboardItemComponent, CommonModule, CdkAccordionModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  public desks!: string[];
+  public desks!: Observable<string[]>;
 
   constructor(private deskService: DeskService) {
     try {
-      this.deskService.get().pipe(tap(res => this.desks = res)).subscribe()
+      this.deskService.get()
     } catch (error) {
-      console.error(error)      
+      console.error(error);
     }
   }
 
   ngOnInit(): void {
     try {
-    this.deskService.subject
-      .pipe(tap(() => (this.deskService
-        .get()
-        .pipe(tap((res) => (this.desks = res)))
-      )));
+      this.deskService.subject
+        .pipe(tap(() => (this.desks = this.deskService.get())))
+        .subscribe();
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
 
-  ngOnDestroy(): void {
-    
-  }
+  ngOnDestroy(): void {}
 }

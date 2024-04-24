@@ -24,8 +24,19 @@ export class APIService {
         localStorage.setItem(title, JSON.stringify(tmpData));
         return tmpData;
       }));
-          } catch (error) {
+    } catch (error) {
       throw new Error();
     }
+  }
+  update(title: string, index: number, data: string | ITask) {
+    return this.get(title).pipe(tap((res: string[] | ITask[]) => {
+      try {
+        res[index] = data;
+        localStorage.setItem(title, JSON.stringify(res));
+        return res;
+      } catch (error) {
+        throw new Error();        
+      }
+    }))
   }
 }

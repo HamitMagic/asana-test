@@ -3,18 +3,31 @@ import { TasklistItemComponent } from '../../shared/components/tasklist-item/tas
 import { Observable, tap } from 'rxjs';
 import { DeskService } from '../../services/desk.service';
 import { CommonModule } from '@angular/common';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { HeaderComponent } from '../../shared/components/header/header.component';
+import { openDialogService } from '../../services/openDialog.service';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [TasklistItemComponent, CommonModule],
+  imports: [
+    TasklistItemComponent,
+    CommonModule,
+    CdkAccordionModule,
+    HeaderComponent,
+    MatButton,
+  ],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss',
 })
 export class TaskListComponent {
   public desks!: Observable<string[]>;
 
-  constructor(private deskService: DeskService) {
+  constructor(
+    private deskService: DeskService,
+    public openDialogService: openDialogService,
+  ) {
     try {
       this.desks = this.deskService.get();
     } catch (error) {

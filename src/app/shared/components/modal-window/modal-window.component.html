@@ -19,7 +19,7 @@
 		</mat-form-field>
 		<mat-form-field>
 			<mat-label>Выберите статус</mat-label>
-			<mat-select [(ngModel)]="taskPriority">
+			<mat-select [(ngModel)]="taskStatus">
 				@for(status of statuses; track status) {
 				<mat-option [value]="status">{{status}}</mat-option>
 			}
@@ -27,7 +27,7 @@
 		</mat-form-field>
 		<mat-form-field>
 			<mat-label>выберите дату дедлайна</mat-label>
-			<input matInput [matDatepicker]="picker">
+			<input matInput [matDatepicker]="picker" [(ngModel)]="taskDeadline">
 			<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
 			<mat-datepicker #picker></mat-datepicker>
 		</mat-form-field>

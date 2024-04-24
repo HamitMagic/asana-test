@@ -1,7 +1,7 @@
 <div class="content-wrapper">
-	<div class="desk-wrapper">
-		@for (desk of desks; track desk) {
-				<app-dashboard-item [desk]="desk"></app-dashboard-item>
+	<cdk-accordion class="desk-wrapper">
+		@for (desk of desks | async; track desk) {
+				<app-dashboard-item [index]="$index" [desk]="desk"></app-dashboard-item>
 		}
-	</div>
+	</cdk-accordion>
 </div>

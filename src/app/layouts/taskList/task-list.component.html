@@ -1,7 +1,8 @@
 <div class="content-wrapper">
-	<div class="desk-wrapper">
+	<cdk-accordion class="desk-wrapper">
 		@for (desk of desks | async; track desk) {
-				<app-tasklist-item [desk]="desk"></app-tasklist-item>
+				<app-tasklist-item [index]="$index" [desk]="desk"></app-tasklist-item>
 		}
-	</div>
+	</cdk-accordion>
+	<button mat-button (click)="openDialogService.openDialog('desk')">создать раздел</button>
 </div>

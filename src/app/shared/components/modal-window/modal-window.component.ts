@@ -6,7 +6,6 @@ import { IDialogData } from '../../model/dialog.model';
 import { MatButtonModule } from '@angular/material/button';
 import { IUser } from '../../model/user.model';
 import { FormsModule } from '@angular/forms';
-import { ITask } from '../../model/task.model';
 import { STATUSES, PRIORITIES } from '../../model/consts';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
@@ -33,7 +32,7 @@ export class ModalWindowComponent {
   public statuses: string[] = Object.values(STATUSES) as string[];
   public taskName: string = '';
   public taskOwner: IUser = { name: 'me', email: 'my@host.com' } as IUser;
-  public taskDeadline: Date = new Date();
+  public taskDeadline!: Date;
   public taskPriority = '';
   public taskStatus = '';
   public taskDeskName = '';
@@ -62,7 +61,7 @@ export class ModalWindowComponent {
       created: new Date(),
       priority: this.taskPriority,
       status: this.taskStatus,
-      executors: [],
+      executors: [this.taskOwner],
     };
   }
 }

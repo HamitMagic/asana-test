@@ -5,8 +5,8 @@
 		</button>
 		<button class="button" mat-button [matMenuTriggerFor]="menu" color="primary">СОЗДАТЬ</button>
 		<mat-menu #menu="matMenu">
-			<button mat-menu-item (click)="openDialog('desk')">Раздел</button>
-			<button mat-menu-item (click)="openDialog('task')">Задачу</button>
+			<button mat-menu-item (click)="handleClick('desk')">Раздел</button>
+			<button mat-menu-item (click)="handleClick('task')">Задачу</button>
 		</mat-menu>
 	</section>
 	<section class="center">
