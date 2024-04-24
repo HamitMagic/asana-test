@@ -8,6 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { RouteConsts } from '../../shared/model/router.model';
+import { SidenavService } from '../../services/sidenav.service';
 
 @Component({
   selector: 'app-main',
@@ -30,20 +31,22 @@ export class MainComponent {
   public isSideNavOpen = true;
   public mobileQuery: MediaQueryList;
 
-  public fillerNav = Object.values(this.routeConstants)
-    .filter((value) => typeof value !== 'string') as RouteConsts[];
+  public fillerNav = Object.values(this.routeConstants).filter(
+    (value) => typeof value !== 'string'
+  ) as RouteConsts[];
 
   private _mobileQueryListener: () => void;
 
   constructor(
     private router: Router,
     changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher
+    media: MediaMatcher,
+    public sidenavService: SidenavService,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     if (this.mobileQuery.matches) this.isSideNavOpen = false;
-    console.log(Object.values(this.routeConstants))
+    this.sidenavService.setSidenavShown(this.isSideNavOpen);
   }
 }

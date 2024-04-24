@@ -21,3 +21,12 @@
 	right: 0;
 	cursor: pointer;
 }
+
+@media screen and (max-width: 600px) {
+	.search-input-wrapper {
+		width: 50dvw;
+	}
+	.search-input {
+		width: 50dvw;
+	}
+}

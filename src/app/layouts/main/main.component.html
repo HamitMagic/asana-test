@@ -1,16 +1,16 @@
 <main class="main-wrapper">
-	<mat-sidenav-container class="sidenav-container">
-			<mat-sidenav [opened]="isSideNavOpen" [mode]="mobileQuery.matches ? 'over' : 'side'" fixedInViewport fixedTopGap="56">
-				<mat-nav-list>
-					@for (nav of fillerNav; track nav) {
-						<a mat-list-item [routerLink]="nav.route">
-							{{nav.name}}
-						</a>
-					}
-				</mat-nav-list>
-			</mat-sidenav>
-		</mat-sidenav-container>
-	<div class="content-wrapper">
+	<mat-sidenav-container >
+		<mat-sidenav class="sidenav" [opened]="sidenavService.isSidenavShown" [mode]="mobileQuery.matches ? 'over' : 'side'" fixedInViewport fixedTopGap="56">
+			<mat-nav-list>
+				@for (nav of fillerNav; track nav) {
+					<a mat-list-item [routerLink]="nav.route">
+						{{nav.name}}
+					</a>
+				}
+			</mat-nav-list>
+		</mat-sidenav>
+	</mat-sidenav-container>
+	<div>
 		<router-outlet></router-outlet>
 	</div>
 </main>

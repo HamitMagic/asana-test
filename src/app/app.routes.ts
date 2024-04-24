@@ -33,6 +33,6 @@ export const routes: Routes = [
   {
     path: ROUTE_CONSTANTS.DEFAULT,
     loadComponent: () =>
-      import('./layouts/main/main.component').then((m) => m.MainComponent),
+      import('./shared/components/redirect/redirect.component').then((m) => m.RedirectComponent),
   },
 ];

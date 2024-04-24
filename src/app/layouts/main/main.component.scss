@@ -1,7 +1,9 @@
 .main-wrapper {
 	display: flex;
 	flex-flow: row nowrap;
-}
-.main-sidenav {
-	background-color: gray;
+	margin: 8px;
+	& .sidenav {
+		background-color: #888888;
+		position: fixed;
+	}
 }

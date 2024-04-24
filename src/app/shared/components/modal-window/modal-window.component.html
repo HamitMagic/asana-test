@@ -1,0 +1,50 @@
+@if (data.type === 'task') {
+	<h2 mat-dialog-title>Создание задачи</h2>
+	<mat-dialog-content class="dialog-content">
+		<mat-form-field>
+      <mat-label>введите название задачи</mat-label>
+			<input matInput type="text" [(ngModel)]="taskName" placeholder="введите название задачи">
+		</mat-form-field>
+		<mat-form-field>
+      <mat-label>в какой раздел поместим задачу</mat-label>
+			<input matInput type="text" [(ngModel)]="taskDeskName" placeholder="в какой раздел поместим задачу">
+    </mat-form-field>
+		<mat-form-field>
+			<mat-label>Выберите приоритет</mat-label>
+			<mat-select [(ngModel)]="taskPriority">
+				@for(priority of priorities; track priority) {
+				<mat-option [value]="priority">{{priority}}</mat-option>
+			}
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Выберите статус</mat-label>
+			<mat-select [(ngModel)]="taskPriority">
+				@for(status of statuses; track status) {
+				<mat-option [value]="status">{{status}}</mat-option>
+			}
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>выберите дату дедлайна</mat-label>
+			<input matInput [matDatepicker]="picker">
+			<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>
+	</mat-dialog-content>
+	
+} @else if (data.type === 'desk') {
+	<h2 mat-dialog-title>Создание раздела</h2>
+	<mat-dialog-content class="mat-typography">
+		<input type="text" [(ngModel)]="deskName" placeholder="введите название раздела">
+	</mat-dialog-content>
+} @else {
+	<h2 mat-dialog-title>ОШИБКА</h2>
+	<mat-dialog-content class="mat-typography">
+		<p>ошибка в получении данных</p>
+	</mat-dialog-content>
+}
+<mat-dialog-actions align="end">
+	<button mat-button mat-dialog-close>Отмена</button>
+	<button mat-button [mat-dialog-close]="sendData()" cdkFocusInitial>Создать</button>
+</mat-dialog-actions>

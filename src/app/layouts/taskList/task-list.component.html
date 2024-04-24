@@ -1,1 +1,7 @@
-<p>task-list works!</p>
+<div class="content-wrapper">
+	<div class="desk-wrapper">
+		@for (desk of desks | async; track desk) {
+				<app-tasklist-item [desk]="desk"></app-tasklist-item>
+		}
+	</div>
+</div>

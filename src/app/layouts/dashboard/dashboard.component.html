@@ -1,1 +1,7 @@
-<p>dashboard works!</p>
+<div class="content-wrapper">
+	<div class="desk-wrapper">
+		@for (desk of desks; track desk) {
+				<app-dashboard-item [desk]="desk"></app-dashboard-item>
+		}
+	</div>
+</div>

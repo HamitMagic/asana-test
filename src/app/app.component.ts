@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from './shared/components/loader/loader.component';
-import { LoaderService } from './shared/services/loader.service';
+import { LoaderService } from './services/loader.service';
 import { HeaderComponent } from './shared/components/header/header.component';
 
 @Component({

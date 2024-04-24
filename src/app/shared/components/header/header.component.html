@@ -1,8 +1,13 @@
 <header class="header-wrapper">
 	<section class="left">
-		<button mat-icon-button color="primary" >
-			<mat-icon fontIcon="menu"></mat-icon>
+		<button class="button" mat-icon-button color="primary" (click)="sidenavService.toggle()">
+			<mat-icon [fontIcon]="sidenavService.isSidenavShown ? 'keyboard_double_arrow_left' : 'menu'"></mat-icon>
 		</button>
+		<button class="button" mat-button [matMenuTriggerFor]="menu" color="primary">СОЗДАТЬ</button>
+		<mat-menu #menu="matMenu">
+			<button mat-menu-item (click)="openDialog('desk')">Раздел</button>
+			<button mat-menu-item (click)="openDialog('task')">Задачу</button>
+		</mat-menu>
 	</section>
 	<section class="center">
 		<app-search-input placeholder="Поиск..."></app-search-input>
