@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -35,7 +35,7 @@ export class ModalWindowComponent {
   public taskDeadline!: Date;
   public taskPriority = '';
   public taskStatus = '';
-  public taskDeskName = '';
+  public taskDeskName = this.data.args ?? '';
   public deskName: string = '';
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: IDialogData) {}

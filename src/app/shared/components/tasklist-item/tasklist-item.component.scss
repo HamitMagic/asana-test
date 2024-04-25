@@ -5,3 +5,16 @@
 .task-amount {
 	color: #888;
 }
+.table-element:hover {
+	cursor: pointer;
+	transform: scale(1.05);
+	transition-duration: 300ms;
+}
+.sidenav {
+	width: 30%;
+}
+.sidenav-header {
+	display: flex;
+	justify-content: space-between;
+	background-color: #888;
+}

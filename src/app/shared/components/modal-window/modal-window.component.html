@@ -5,10 +5,12 @@
       <mat-label>введите название задачи</mat-label>
 			<input matInput type="text" [(ngModel)]="taskName" placeholder="введите название задачи">
 		</mat-form-field>
-		<mat-form-field>
-      <mat-label>в какой раздел поместим задачу</mat-label>
-			<input matInput type="text" [(ngModel)]="taskDeskName" placeholder="в какой раздел поместим задачу">
-    </mat-form-field>
+		@if(!data.args) {
+			<mat-form-field >
+				<mat-label>в какой раздел поместим задачу</mat-label>
+				<input matInput type="text" [(ngModel)]="taskDeskName" [placeholder]="'в какой раздел поместим задачу'">
+			</mat-form-field>
+		}
 		<mat-form-field>
 			<mat-label>Выберите приоритет</mat-label>
 			<mat-select [(ngModel)]="taskPriority">

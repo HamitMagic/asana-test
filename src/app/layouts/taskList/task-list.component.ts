@@ -26,7 +26,7 @@ export class TaskListComponent {
 
   constructor(
     private deskService: DeskService,
-    public openDialogService: openDialogService,
+    private openDialogService: openDialogService
   ) {
     try {
       this.desks = this.deskService.get();
@@ -43,5 +43,8 @@ export class TaskListComponent {
     } catch (error) {
       console.error(error);
     }
+  }
+  handleClick() {
+    this.openDialogService.openDialog('desk');
   }
 }

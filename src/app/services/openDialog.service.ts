@@ -16,13 +16,15 @@ export class openDialogService {
 		private deskService: DeskService,
   ) {}
 
-  openDialog(type: string) {
+  openDialog(type: string, args?:string) {
     const dialogRef = this.dialog.open(ModalWindowComponent, {
       data: {
         type,
+        args,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
+      console.log(result)
       switch (type) {
         case 'desk':
           this.deskService.set(result)
