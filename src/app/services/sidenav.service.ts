@@ -12,8 +12,13 @@ export class SidenavService {
     this.isSidenavShown = state;
   }
 
-	public toggle() {
-		this.isSidenavShown = !this.isSidenavShown;
-	}
-
+  public toggle() {
+    this.isSidenavShown = !this.isSidenavShown;
+  }
+  public close() {
+    this.isSidenavShown = false;
+  }
+  public open() {
+    this.isSidenavShown = true;
+  }
 }

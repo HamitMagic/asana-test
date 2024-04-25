@@ -38,15 +38,14 @@ export class MainComponent {
   private _mobileQueryListener: () => void;
 
   constructor(
-    private router: Router,
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     public sidenavService: SidenavService,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    if (this.mobileQuery.matches) this.isSideNavOpen = false;
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    if (this.mobileQuery.matches) this.isSideNavOpen = false;
     this.sidenavService.setSidenavShown(this.isSideNavOpen);
   }
 }

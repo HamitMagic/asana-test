@@ -21,7 +21,7 @@ import { openDialogService } from '../../../services/openDialog.service';
 export class HeaderComponent {
   constructor(
     public sidenavService: SidenavService,
-    private openDialogService: openDialogService,
+    private openDialogService: openDialogService
   ) {}
 
   handleClick(type: string) {

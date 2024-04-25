@@ -62,16 +62,6 @@
 		</div>
 	</section>
 	<section>
-		<mat-sidenav-container >
-			<mat-sidenav #sideItem class="sidenav" position="end" opened="false" mode="side" fixedInViewport fixedTopGap="56">
-				<div class="sidenav-header">
-					<button mat-button color="primary">Выполнено</button>
-					<button mat-button>
-						<mat-icon (click)="sideItem.close()" fontIcon="exit_to_app" color="primary"></mat-icon>
-					</button>
-				</div>
-				<p>{{selectedTask.name}}</p>
-			</mat-sidenav>
-		</mat-sidenav-container>
+		<app-task-item-overview #taskItem [task]="selectedTask"></app-task-item-overview>
 	</section>
 </cdk-accordion-item>

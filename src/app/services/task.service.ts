@@ -34,6 +34,12 @@ export class TaskService {
     return this.api.update('tasks', index, data) as Observable<ITask[]>;
   }
 
+  delete(task: ITask) {
+    this.get().pipe(tap((tasks) => {
+      return tasks.filter(el => el.name !== task.name && el.created !== el.created) //по id конечно проще удалять)))
+    })).subscribe()
+  }
+
   private onSubscribe = () => {
     this.deskService.subject.next()
   }

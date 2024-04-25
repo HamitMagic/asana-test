@@ -1,0 +1,58 @@
+	<mat-sidenav #sideItem class="sidenav" position="end" opened="false" mode="side" fixedInViewport fixedTopGap="56">
+		<section class="sidenav-header">
+			<button mat-button color="primary" (click)="handleClick()">Выполнено</button>
+			<button mat-button (click)="onClose()">
+				<mat-icon fontIcon="exit_to_app" color="primary"></mat-icon>
+			</button>
+		</section>
+		<section class="task-info">
+			<p class="task-name task">
+				<span>{{task.name}}</span>
+				<button class="task-delete" color="primary" mat-button (click)="deleteTask()">
+					<mat-icon  fontIcon="delete"></mat-icon>
+				</button>
+				</p>
+			<p class="task">
+				<span>создана</span>
+				<span>{{task.created | date}}</span>
+			</p>
+			<p class="task">
+				<span>дедлайн</span>
+				<span>{{task.deadline | date}}</span>
+			</p>
+			<p class="task">
+				<span>приоритет</span>
+				<span>{{task.priority}}</span>
+			</p>
+			<p class="task">
+				<span>статус</span>
+				<span>
+					<span>{{task.status}}</span>
+					<button class="button" mat-button [matMenuTriggerFor]="menu" color="primary">
+						<mat-icon fontIcon="edit_note"></mat-icon>
+					</button>
+					<mat-menu #menu="matMenu">
+						<mat-form-field>
+							<mat-label>Выберите статус</mat-label>
+							<mat-select [(ngModel)]="task.status">
+								@for(status of statuses; track status) {
+								<mat-option [value]="status">{{status}}</mat-option>
+							}
+							</mat-select>
+						</mat-form-field>
+					</mat-menu>
+				</span>
+			</p>
+			<p class="task">
+				<span>исполнители</span>
+				<span>
+				@for (executor of task.executors; track executor) {
+					<span [title]="executor.email">{{executor.name}}&nbsp;</span>
+				}
+				<button mat-button class="add-executor" (click)="addExecutor()" fontIcon="add">
+					<mat-icon fontIcon="add"></mat-icon>
+				</button>
+				</span>
+			</p>
+		</section>
+	</mat-sidenav>

@@ -6,9 +6,8 @@ import { ITask } from '../../model/task.model';
 import { TaskService } from '../../../services/task.service';
 import { CommonModule } from '@angular/common';
 import { openDialogService } from '../../../services/openDialog.service';
+import { TaskItemOverviewComponent } from '../task-item-overview/task-item-overview.component';
 import { MatButton } from '@angular/material/button';
-import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
-import { SidenavService } from '../../../services/sidenav.service';
 
 @Component({
   selector: 'app-tasklist-item',
@@ -16,18 +15,18 @@ import { SidenavService } from '../../../services/sidenav.service';
   imports: [
     CdkAccordionModule,
     MatIconModule,
+    MatButton,
     MatTableModule,
     CommonModule,
-    MatButton,
-    MatSidenavModule,
+    TaskItemOverviewComponent,
   ],
   templateUrl: './tasklist-item.component.html',
   styleUrl: './tasklist-item.component.scss',
 })
 export class TasklistItemComponent implements OnInit {
-  @ViewChild('sideItem') sideItem!: MatSidenav;
   @Input() desk!: string;
   @Input() index: number = 0;
+  @ViewChild('taskItem') taskItem!: TaskItemOverviewComponent;
   public tasks: ITask[] = [];
   public selectedTask: ITask = {} as ITask;
   public displayedColumns: string[] = [
@@ -41,13 +40,14 @@ export class TasklistItemComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     private openDialogService: openDialogService,
-    public sidenavService: SidenavService,
   ) {}
 
   ngOnInit(): void {
-    this.taskService.get()
-      .subscribe((allTasks) =>
-        (this.tasks = allTasks.filter((task) => task.deskName === this.desk))
+    this.taskService
+      .get()
+      .subscribe(
+        (allTasks) =>
+          (this.tasks = allTasks.filter((task) => task.deskName === this.desk))
       );
   }
 
@@ -57,6 +57,6 @@ export class TasklistItemComponent implements OnInit {
 
   openTask(task: ITask) {
     this.selectedTask = task;
-    this.sideItem.open();
+    this.taskItem.onOpen();
   }
 }
